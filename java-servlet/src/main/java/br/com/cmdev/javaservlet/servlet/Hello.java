@@ -15,7 +15,6 @@ public class Hello extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
 		PrintWriter writer = resp.getWriter();
 		writer.println("<html>");
 		writer.println("<head>");
@@ -28,5 +27,4 @@ public class Hello extends HttpServlet {
 		writer.println("</body>");
 		writer.println("</html>");
 	}
-
 }
