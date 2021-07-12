@@ -1,11 +1,11 @@
 package br.com.cmdev.javaservlet.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
 import br.com.cmdev.javaservlet.model.DataBase;
 import br.com.cmdev.javaservlet.model.Empresa;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,7 +35,6 @@ public class EmpresaCreateServlet extends HttpServlet {
 		
 		request.getContextPath();
 	}
-	*/
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -58,7 +57,22 @@ public class EmpresaCreateServlet extends HttpServlet {
 		
 		DataBase db = new DataBase();
 		db.adiciona(empresa);
+	}
+	
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nome = request.getParameter("nome");
+		Empresa empresa = new Empresa();
+		empresa.setNome(nome);
+		empresa.setDataCadastro(LocalDateTime.now());
 		
+		DataBase db = new DataBase();
+		db.adiciona(empresa);
+		
+		request.setAttribute("empresa", empresa);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/empresa-view.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
