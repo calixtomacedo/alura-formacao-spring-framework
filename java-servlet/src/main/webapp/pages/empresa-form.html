@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Cadastro de Empresas</title>
+	</head>
+	
+	<body>
+		
+		${pageContext.request.contextPath}
+		
+		<form action="/java-servlet/empresa" method="post">
+			<div>
+				<label>Nome da Empresa:</label>
+				<input type="text" name="nome" id="text-nome" />
+			</div>
+			
+			<div>
+				<input type="submit" value="Enviar" />				
+			</div>
+		
+		</form>
+	</body>
+</html>

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/welcome")
-public class Hello extends HttpServlet {
+public class WelcomeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -900071542486715106L;
 	
@@ -22,9 +22,12 @@ public class Hello extends HttpServlet {
 		writer.println("</head>");
 		writer.println("<body>");
 		writer.println("<h1>");
-		writer.println("Hello world. Congratulations, do you written your first Servlet!");
+		writer.println("Welcome. Congratulations, do you written your first Servlet!");
 		writer.println("</h1>");
 		writer.println("</body>");
 		writer.println("</html>");
+		
+		req.getSession().setAttribute("path", req.getContextPath());
+		
 	}
 }
