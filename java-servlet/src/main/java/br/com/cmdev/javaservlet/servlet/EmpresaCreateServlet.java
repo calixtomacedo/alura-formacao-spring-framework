@@ -8,7 +8,6 @@ import java.util.Date;
 
 import br.com.cmdev.javaservlet.model.DataBase;
 import br.com.cmdev.javaservlet.model.Empresa;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -80,9 +79,13 @@ public class EmpresaCreateServlet extends HttpServlet {
 		db.adiciona(empresa);
 		
 		request.setAttribute("empresa", empresa);
-		
+		/*
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/empresa-view.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list");
 		dispatcher.forward(request, response);
+		*/
+		
+		response.sendRedirect("list");
 	}
 
 }

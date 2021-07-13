@@ -38,8 +38,18 @@ public class EmpresaListServlet extends HttpServlet {
 		writer.println("</body>");
 		writer.println("</html>");
 	}
-	*/
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DataBase db = new DataBase();
+		List<Empresa> empresas = db.getEmpresas();
+		
+		request.setAttribute("empresas", empresas);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/empresa-list.jsp");
+		dispatcher.forward(request, response);
+	}
+	*/
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataBase db = new DataBase();
 		List<Empresa> empresas = db.getEmpresas();
 		

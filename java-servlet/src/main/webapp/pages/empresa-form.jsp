@@ -15,6 +15,7 @@
 				<input type="text" name="nome" id="text-nome" />
 			</div>
 			
+			<br />
 			<div>
 				<label>Data da Abertura:</label>
 				<input type="text" name="dataabertura" id="text-dataabertura" />
