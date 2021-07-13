@@ -14,8 +14,8 @@ public class WelcomeServlet extends HttpServlet {
 	private static final long serialVersionUID = -900071542486715106L;
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		PrintWriter writer = resp.getWriter();
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		PrintWriter writer = response.getWriter();
 		writer.println("<html>");
 		writer.println("<head>");
 		writer.println("<title> Your first Servlet </title>");
@@ -26,8 +26,5 @@ public class WelcomeServlet extends HttpServlet {
 		writer.println("</h1>");
 		writer.println("</body>");
 		writer.println("</html>");
-		
-		req.getSession().setAttribute("path", req.getContextPath());
-		
 	}
 }
