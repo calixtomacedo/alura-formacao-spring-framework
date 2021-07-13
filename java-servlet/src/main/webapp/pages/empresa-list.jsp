@@ -1,8 +1,9 @@
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="br.com.cmdev.javaservlet.model.Empresa"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,23 +11,21 @@
 		<title>Lista de Empresa</title>
 	</head>
 	<body>
-		<table border="1" style="width: 500px">
+		 <table border="1" style="width: 500px">
 			<caption>Lista de Empresa</caption>
 			<tr>
 				<th>Nome</th>
+				<th>Data da Abertura</th>
 				<th>Data Cadastro</th>
 			</tr>
-			<%
-				List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas");
-				for(Empresa empresa : empresas){
-			%>
+			<c:forEach items="${empresas}" var="empresa">
 				<tr>
-				<td><%= empresa.getNome()%></td>
-				<td><%= empresa.getDataCadastro().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")) %></td>
+					<td>${empresa.nome}</td>
+					<td><fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+					<td>${empresa.dataCadastro.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))}</td>
 				</tr>
-			<% 
-				}
-			%>
+			</c:forEach>
 		</table>
+		 
 	</body>
 </html>
