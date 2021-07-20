@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:url value="/save" var="save" />
+<c:url value="/empresa?action=save" var="save" />
 
 <!DOCTYPE html>
 <html>

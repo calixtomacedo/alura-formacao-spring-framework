@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<c:url value="/empresa" var="url_path" />
+<c:url value="/empresa?action=create" var="create" />
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +9,7 @@
 	
 	<body>
 		
-		<form action="${url_path}" method="post">
+		<form action="${create}" method="post">
 			<div>
 				<label>Nome da Empresa:</label>
 				<input type="text" name="nome" id="text-nome" />

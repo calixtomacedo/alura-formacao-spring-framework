@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:url value="/edit" var="edit" />
-<c:url value="/delete" var="delete" />
+<c:url value="/empresa?action=edit" var="edit" />
+<c:url value="/empresa?action=delete" var="delete" />
 
 <!DOCTYPE html>
 <html>
@@ -29,11 +29,11 @@
 				<td>${empresa.dataCadastro.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))}</td>
 				
 				<td>
-					<a href="${edit}?id=${empresa.id}">editar</a>
+					<a href="${edit}&id=${empresa.id}">editar</a>
 				</td>
 				
 				<td>
-					<a href="${delete}?id=${empresa.id}">Apagar</a>
+					<a href="${delete}&id=${empresa.id}">Apagar</a>
 				</td>
 			</tr>
 		</c:forEach>
