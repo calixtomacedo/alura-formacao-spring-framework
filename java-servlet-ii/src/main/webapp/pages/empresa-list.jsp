@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:url value="/empresa?action=edit" var="edit" />
-<c:url value="/empresa?action=delete" var="delete" />
+<c:url value="/controller?action=empresaEdit" var="edit" />
+<c:url value="/controller?action=empresaDelete" var="delete" />
 
 <!DOCTYPE html>
 <html>

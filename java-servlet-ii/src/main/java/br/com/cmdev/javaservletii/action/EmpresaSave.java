@@ -10,7 +10,7 @@ import br.com.cmdev.javaservletii.model.Empresa;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class EmpresaActionSave implements EmpresaAction {
+public class EmpresaSave implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class EmpresaActionSave implements EmpresaAction {
 		DataBase db = new DataBase();
 		db.save(empresa);
 
-		return "redirect:empresa?action=list";
+		return "redirect:controller?action=empresaList";
 	}
 
 }

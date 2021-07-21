@@ -6,7 +6,7 @@ import br.com.cmdev.javaservletii.model.DataBase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class EmpresaActionDelete implements EmpresaAction {
+public class EmpresaDelete implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
@@ -15,7 +15,7 @@ public class EmpresaActionDelete implements EmpresaAction {
 		DataBase db = new DataBase();
 		db.delete(id);
 		
-		return "redirect:empresa?action=list";
+		return "redirect:controller?action=empresaList";
 	}
 
 }

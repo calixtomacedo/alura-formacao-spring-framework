@@ -3,7 +3,7 @@ package br.com.cmdev.javaservletii.servlet;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import br.com.cmdev.javaservletii.action.EmpresaAction;
+import br.com.cmdev.javaservletii.action.Action;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/empresa")
+@WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -19,8 +19,8 @@ public class ControllerServlet extends HttpServlet {
 		String className = createClassName(request);
 		String destinationType = null;
 		try {
-			EmpresaAction empresaAction = (EmpresaAction) Class.forName(className).getConstructor().newInstance();
-			destinationType = empresaAction.execute(request);
+			Action action = (Action) Class.forName(className).getConstructor().newInstance();
+			destinationType = action.execute(request);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | ClassNotFoundException e) {
 			throw new ServletException(e);
 		}
@@ -36,8 +36,9 @@ public class ControllerServlet extends HttpServlet {
 
 	private String createClassName(HttpServletRequest request) {
 		String action = request.getParameter("action");
-		String method = action.replace(action.substring(0, 1), action.substring(0, 1).toUpperCase());
-		return EmpresaAction.class.getName().concat(method);
+		String firstLetter = action.substring(0, 1);
+		String className = action.replaceFirst(firstLetter, firstLetter.toUpperCase());
+		return Action.class.getPackageName().concat(".").concat(className);
 	}
 
 }

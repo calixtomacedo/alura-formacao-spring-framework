@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:url value="/empresa?action=save" var="save" />
+<c:url value="/controller" var="servletController" />
 
 <!DOCTYPE html>
 <html>
@@ -12,8 +12,8 @@
 
 <body>
 
-	<form action="${save}" method="post">
-		
+	<form action="${servletController}" method="post">
+		<input type="hidden" name="action" value="empresaSave" id="text-save" />
 		<input type="hidden" name="id" value="${empresa.id}" id="hidden_id">
 		
 		<div>

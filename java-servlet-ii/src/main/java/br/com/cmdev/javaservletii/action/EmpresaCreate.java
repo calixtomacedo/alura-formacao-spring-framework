@@ -11,7 +11,7 @@ import br.com.cmdev.javaservletii.model.Empresa;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class EmpresaActionCreate implements EmpresaAction {
+public class EmpresaCreate implements Action {
 
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -31,7 +31,7 @@ public class EmpresaActionCreate implements EmpresaAction {
 
 		request.setAttribute("empresa", empresa);
 
-		return "redirect:empresa?action=list";
+		return "redirect:controller?action=empresaList";
 	}
 
 }

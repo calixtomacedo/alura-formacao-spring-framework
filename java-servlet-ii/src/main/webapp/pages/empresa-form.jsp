@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<c:url value="/empresa?action=create" var="create" />
+
+<c:url value="/controller" var="servletController" />
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +11,8 @@
 	
 	<body>
 		
-		<form action="${create}" method="post">
+		<form action="${servletController}" method="post">
+			<input type="hidden" name="action" value="empresaCreate" id="text-create" />
 			<div>
 				<label>Nome da Empresa:</label>
 				<input type="text" name="nome" id="text-nome" />
@@ -21,6 +24,7 @@
 				<input type="text" name="dataabertura" id="text-dataabertura" />
 			</div>
 			
+			<br />
 			<div>
 				<input type="submit" value="Enviar" />				
 			</div>

@@ -5,7 +5,7 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class EmpresaActionForm implements EmpresaAction {
+public class EmpresaForm implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {

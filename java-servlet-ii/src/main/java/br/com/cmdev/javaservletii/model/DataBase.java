@@ -8,6 +8,7 @@ import java.util.List;
 public class DataBase {
 
 	private static List<Empresa> empresaList = new ArrayList<>();
+	private static List<Usuario> usuarioList = new ArrayList<>();
 	private static Long ids = 1L;
 
 	static {
@@ -22,6 +23,19 @@ public class DataBase {
 		caelum.setNome("Caelum");
 		caelum.setDataCadastro(LocalDateTime.now());
 		empresaList.add(caelum);
+		
+		Usuario calixto = new Usuario();
+		calixto.setNome("Calixto Macedo");
+		calixto.setLogin("calixto.macedo");
+		calixto.setSenha("123");
+		usuarioList.add(calixto);
+		
+		Usuario rosy = new Usuario();
+		rosy.setNome("Rosimeire Cunegundes");
+		rosy.setLogin("rosy.macedo");
+		rosy.setSenha("321");
+		
+		usuarioList.add(rosy);
 	}
 
 	public void adiciona(Empresa empresa) {
@@ -59,5 +73,14 @@ public class DataBase {
 				empresas.setDataAbertura(empresa.getDataAbertura());
 			}
 		}
+	}
+
+	public Usuario usarioLogin(String login, String senha) {
+		for (Usuario user : usuarioList) {
+			if(user.isUsuarioValido(login, senha)) {
+				return user;
+			}
+		}
+		return null;
 	}
 }

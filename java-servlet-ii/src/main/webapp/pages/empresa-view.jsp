@@ -6,7 +6,7 @@
 
 
 <%
-EmpresaAction empresa = (EmpresaAction) request.getAttribute("empresa");
+Action empresa = (Action) request.getAttribute("empresa");
 %>
 
 <!DOCTYPE html>
