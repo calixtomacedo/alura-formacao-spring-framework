@@ -14,7 +14,7 @@
 		<li>Itens
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/welcome">Welcome</a></li>
-				<li><a href="${pageContext.request.contextPath}/pages/empresa-form.jsp">Cadastrar Empresa</a></li>		
+				<li><a href="${pageContext.request.contextPath}/empresa?action=form">Cadastrar Empresa</a></li>		
 				<li><a href="${pageContext.request.contextPath}/empresa?action=list">Listar Empresas</a></li>		
 				<li><a href="${pageContext.request.contextPath}/sayHello">Say Hello</a></li>
 			</ul>
