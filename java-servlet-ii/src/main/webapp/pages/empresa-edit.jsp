@@ -11,6 +11,12 @@
 </head>
 
 <body>
+	
+	<c:if test="${!empty user}">
+		<p> 
+			Bem vindo ao sistema: ${user.nome} - <a href="${pageContext.request.contextPath}/controller?action=usuarioLogout">SAIR</a>
+		</p>
+	</c:if>
 
 	<form action="${servletController}" method="post">
 		<input type="hidden" name="action" value="empresaSave" id="text-save" />

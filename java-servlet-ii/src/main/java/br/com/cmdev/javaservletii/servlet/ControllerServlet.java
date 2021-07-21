@@ -10,13 +10,24 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String className = createClassName(request);
+		String actionParam = request.getParameter("action");
+		
+		HttpSession session = request.getSession();
+		boolean isProtected = !(actionParam.equals("usuarioLogin") || actionParam.equals("loginForm"));
+		boolean isUserLogged = !(session.getAttribute("user") != null);
+		if(isProtected && isUserLogged) {
+			response.sendRedirect("controller?action=loginForm");
+			return;
+		}
+		
+		String className = createClassName(request, actionParam);
 		String destinationType = null;
 		try {
 			Action action = (Action) Class.forName(className).getConstructor().newInstance();
@@ -34,8 +45,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 	}
 
-	private String createClassName(HttpServletRequest request) {
-		String action = request.getParameter("action");
+	private String createClassName(HttpServletRequest request, String action) {
 		String firstLetter = action.substring(0, 1);
 		String className = action.replaceFirst(firstLetter, firstLetter.toUpperCase());
 		return Action.class.getPackageName().concat(".").concat(className);

@@ -6,6 +6,11 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
+	<session-config>
+	    <!-- 10 min -->
+	    <session-timeout>10</session-timeout>
+	</session-config> 
+	
 	<servlet>
 		<servlet-name>hello</servlet-name>
 		<servlet-class>br.com.cmdev.javaservletii.servlet.HelloServlet</servlet-class>

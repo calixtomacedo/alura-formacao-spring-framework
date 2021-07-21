@@ -6,11 +6,13 @@ import br.com.cmdev.javaservletii.model.DataBase;
 import br.com.cmdev.javaservletii.model.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 public class UsuarioLogin implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 
@@ -23,7 +25,7 @@ public class UsuarioLogin implements Action {
 			return "forward:login-form.jsp";
 		}
 		
-		request.getSession().setAttribute("user", user);
+		session.setAttribute("user", user);
 		
 		return "redirect:controller?action=empresaList";
 	}

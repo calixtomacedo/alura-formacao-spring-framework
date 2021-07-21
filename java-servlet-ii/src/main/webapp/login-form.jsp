@@ -9,11 +9,13 @@
 		<title>Login</title>
 	</head>
 	
-	<body>
+	<body style="padding: 20px 0px 0px 60px">
 		
 		<c:if test="${!empty msgLogin}">
 			<p>${msgLogin}</p>
 		</c:if>
+		
+		<p>Acessar a área restrita</p>
 		
 		<form action="${servletController}" method="post">
 			<input type="hidden" name="action" value="usuarioLogin" id="text-login" />

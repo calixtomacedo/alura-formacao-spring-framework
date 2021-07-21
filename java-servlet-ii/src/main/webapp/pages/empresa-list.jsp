@@ -14,6 +14,13 @@
 <title>Lista de Empresa</title>
 </head>
 <body>
+	
+		<c:if test="${!empty user}">
+			<p> 
+				Bem vindo ao sistema: ${user.nome} - <a href="${pageContext.request.contextPath}/controller?action=usuarioLogout">SAIR</a>
+			</p>
+		</c:if>
+	
 	<table border="1" style="width: 500px">
 		<caption>Lista de Empresa</caption>
 		<tr>
