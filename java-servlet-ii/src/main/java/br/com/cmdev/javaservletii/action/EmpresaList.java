@@ -12,10 +12,12 @@ public class EmpresaList implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request) throws ServletException, IOException {
+
 		DataBase db = new DataBase();
 		List<Empresa> empresas = db.getEmpresas();
 
 		request.setAttribute("empresas", empresas);
+
 		return "forward:/pages/empresa-list.jsp";
 	}
 

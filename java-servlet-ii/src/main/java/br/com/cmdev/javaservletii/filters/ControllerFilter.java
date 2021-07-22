@@ -1,20 +1,27 @@
-package br.com.cmdev.javaservletii.servlet;
+package br.com.cmdev.javaservletii.filters;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import br.com.cmdev.javaservletii.action.Action;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-//@WebServlet(urlPatterns = "/controller")
-public class ControllerServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class ControllerFilter implements Filter {
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+
+		System.out.println("ControllerFilter");
+
+		HttpServletRequest request = (HttpServletRequest) servletRequest;
+		HttpServletResponse response = (HttpServletResponse) servletResponse;
+
 		String actionParam = request.getParameter("action");
 
 		String className = createClassName(request, actionParam);

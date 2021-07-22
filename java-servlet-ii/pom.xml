@@ -21,6 +21,30 @@
 			<scope>provided</scope>
 		</dependency>	
 		
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp/jakarta.servlet.jsp-api -->
+		<dependency>
+		    <groupId>jakarta.servlet.jsp</groupId>
+		    <artifactId>jakarta.servlet.jsp-api</artifactId>
+		    <version>3.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		    
+		<!-- https://mvnrepository.com/artifact/jakarta.el/jakarta.el-api -->
+		<dependency>
+		    <groupId>jakarta.el</groupId>
+		    <artifactId>jakarta.el-api</artifactId>
+		    <version>4.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-web-api -->
+		<dependency>
+		    <groupId>jakarta.platform</groupId>
+		    <artifactId>jakarta.jakartaee-web-api</artifactId>
+		    <version>9.1.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
 		<dependency>
 		    <groupId>org.glassfish.web</groupId>
