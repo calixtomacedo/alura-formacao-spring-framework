@@ -14,26 +14,27 @@ public class ConnectionFactory {
 
 	public ConnectionFactory() {
 		ComboPooledDataSource pooledDataSource = new ComboPooledDataSource();
-		pooledDataSource.setJdbcUrl(getUrlConnectionOracle());
-		//pooledDataSource.setJdbcUrl(getUrlConnectionMySQL());
+		//pooledDataSource.setJdbcUrl(getUrlConnectionOracle());
+		pooledDataSource.setJdbcUrl(getUrlConnectionMySQL());
 		pooledDataSource.setUser("alura");
-		pooledDataSource.setPassword("access@Alura");
+		//pooledDataSource.setPassword("access@Alura");
+		pooledDataSource.setPassword("senha01@Alura");
 		pooledDataSource.setMaxPoolSize(10);
 		
 		this.dataSource = pooledDataSource;
 	}
 
-	@SuppressWarnings("unused")
 	private String getUrlConnectionMySQL() {
 		String url = "jdbc:mysql://";
-		String serverName = "192.168.0.100:3306/";
-		String dataBase = "ALURA_DB";
+		String serverName = "192.168.0.18:3306/";
+		String dataBase = "aluradb";
 		//String param = "?useTimezone=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&autoReconnect=true&failOverReadOnly=false&interactiveClient=true";
 		String param = "?useUnicode=true&characterEncoding=UTF-8&relaxAutoCommit=true&autoReconnect=true&failOverReadOnly=false&interactiveClient=true";
 		StringBuilder urlConnection = new StringBuilder(url).append(serverName).append(dataBase).append(param);
 		return urlConnection.toString();
 	}
 	
+	@SuppressWarnings("unused")
 	private String getUrlConnectionOracle() {
 		String url = "jdbc:oracle:thin:@//";
 		String serverName = "192.168.0.43:1521/";
