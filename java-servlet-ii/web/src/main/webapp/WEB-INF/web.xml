@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">	
+	<display-name>java-servlet</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<session-config>
+	    <!-- 10 min -->
+	    <session-timeout>10</session-timeout>
+	</session-config> 
+	
+	<servlet>
+		<servlet-name>hello</servlet-name>
+		<servlet-class>br.com.cmdev.javaservletii.web.servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>hello</servlet-name>
+		<url-pattern>/sayHello</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+		<filter-name>Monitoring</filter-name>
+		<filter-class>br.com.cmdev.javaservletii.web.filters.MonitoringFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Monitoring</filter-name>
+		<url-pattern>/controller</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>Autorization</filter-name>
+		<filter-class>br.com.cmdev.javaservletii.web.filters.AutorizationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Autorization</filter-name>
+		<url-pattern>/controller</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>Controller</filter-name>
+		<filter-class>br.com.cmdev.javaservletii.web.filters.ControllerFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Controller</filter-name>
+		<url-pattern>/controller</url-pattern>
+	</filter-mapping>
+	
+	
+</web-app>
