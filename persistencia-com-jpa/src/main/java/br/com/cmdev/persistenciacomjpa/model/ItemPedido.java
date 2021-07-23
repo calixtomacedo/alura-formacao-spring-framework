@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -23,8 +22,7 @@ public class ItemPedido {
 
 	@Id
 	@Column(name = "IDITEMSPEDIDO")
-	@SequenceGenerator(name = "TB_ITEMSPEDIDO_SEQ", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB_ITEMSPEDIDO_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private BigDecimal precoUnitario;
 	private Integer quantidade;

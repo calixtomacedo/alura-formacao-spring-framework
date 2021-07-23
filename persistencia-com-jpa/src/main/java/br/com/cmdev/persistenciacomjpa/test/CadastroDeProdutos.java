@@ -15,7 +15,7 @@ public class CadastroDeProdutos {
 	public static void main(String[] args) {
 		
 		Categoria categoria = new Categoria();
-		categoria.setId(61L);
+		categoria.setId(2L);
 		
 		Produto produto = new Produto();
 		produto.setCategoria(categoria);

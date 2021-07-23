@@ -13,7 +13,7 @@ public class CadastroDeCategorias {
 	public static void main(String[] args) {
 		
 		Categoria categoria = new Categoria();
-		categoria.setDescricao("INFORMATICAS");
+		categoria.setDescricao("BICICLETAS");
 		categoria.setDataCadastro(LocalDateTime.now());
 		
 		EntityManager em = JPAUtil.getEntityManager();

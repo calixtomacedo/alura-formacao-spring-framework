@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -27,8 +26,7 @@ public class Pedido {
 
 	@Id
 	@Column(name = "IDPEDIDO")
-	@SequenceGenerator(name = "TB_PEDIDOS_SEQ", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB_PEDIDOS_SEQ")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private BigDecimal valorTotal;
 	private LocalDateTime dataPedido;
