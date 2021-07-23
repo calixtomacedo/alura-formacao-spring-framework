@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import br.com.cmdev.javaservletii.web.action.Action;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -15,6 +16,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class ControllerFilter implements Filter {
 
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+	
+	@Override
+	public void destroy() {}
+	
+	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 
 		System.out.println("ControllerFilter");
