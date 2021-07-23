@@ -33,7 +33,7 @@
 			<tr>
 				<td><c:out value="${empresa.nome}"></c:out></td>
 				<td><fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
-				<td>${empresa.dataCadastro.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))}</td>
+				<td><fmt:formatDate value="${empresa.dataCadastro}" pattern="dd/MM/yyyy HH:mm:ss"></fmt:formatDate></td>
 				
 				<td>
 					<a href="${edit}&id=${empresa.id}">editar</a>
