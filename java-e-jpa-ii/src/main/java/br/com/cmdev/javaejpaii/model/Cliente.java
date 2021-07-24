@@ -19,7 +19,14 @@ public class Cliente {
 	private Long id;
 	private String nome;
 	private String cpf;
-	private LocalDateTime dataCadastro;
+	private LocalDateTime dataCadastro = LocalDateTime.now();
+	
+	public Cliente() {}
+
+	public Cliente(String nome, String cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
+	}
 
 	public Long getId() {
 		return id;

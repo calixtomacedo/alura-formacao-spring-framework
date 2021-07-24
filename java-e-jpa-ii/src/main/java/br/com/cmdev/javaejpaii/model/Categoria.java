@@ -18,8 +18,15 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private LocalDateTime dataCadastro;
+	private LocalDateTime dataCadastro = LocalDateTime.now();
 
+	
+	public Categoria() {}
+	
+	public Categoria(String descricao) {
+		this.descricao = descricao;
+	}
+	
 	public Long getId() {
 		return id;
 	}

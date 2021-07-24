@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,10 +26,19 @@ public class Produto {
 	private BigDecimal preco;
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCATEGORIA")
 	private Categoria categoria;
 
+	public Produto() {}
+
+	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.categoria = categoria;
+	}
+	
 	public Long getId() {
 		return id;
 	}
