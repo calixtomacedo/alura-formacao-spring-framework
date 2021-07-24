@@ -2,8 +2,8 @@ package br.com.cmdev.javaejpa.test;
 
 import javax.persistence.EntityManager;
 
-import br.com.cmdev.javaejpa.dao.PedidoDAO;
-import br.com.cmdev.javaejpa.model.Pedido;
+import br.com.cmdev.javaejpa.dao.ProdutoDAO;
+import br.com.cmdev.javaejpa.model.Produto;
 import br.com.cmdev.javaejpa.util.JPAUtil;
 
 public class DeletarProduto {
@@ -11,12 +11,12 @@ public class DeletarProduto {
 	public static void main(String[] args) {
 		
 		EntityManager em = JPAUtil.getEntityManager();
-		PedidoDAO pedidosDAO = new PedidoDAO(em);
+		ProdutoDAO produtoDAO = new ProdutoDAO(em);
 		
-		Pedido pedido = pedidosDAO.buscarPorId(22L);
+		Produto produto = produtoDAO.buscarPorId(5L);
 		
 		em.getTransaction().begin();
-		pedidosDAO.deletar(pedido);
+		produtoDAO.deletar(produto);
 		em.getTransaction().commit();
 		em.close();
 	}

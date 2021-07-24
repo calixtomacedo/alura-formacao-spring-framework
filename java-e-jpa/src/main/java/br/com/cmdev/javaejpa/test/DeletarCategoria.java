@@ -10,7 +10,7 @@ public class DeletarCategoria {
 	
 	public static void main(String[] args) {
 		EntityManager em = JPAUtil.getEntityManager();
-		Categoria categoria = em.find(Categoria.class, 41L);
+		Categoria categoria = em.find(Categoria.class, 2L);
 		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 		em.getTransaction().begin();
 		categoriaDAO.deletar(categoria);
