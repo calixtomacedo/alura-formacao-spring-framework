@@ -14,8 +14,7 @@ public class CadastrarProduto {
 
 	public static void main(String[] args) {
 
-		Categoria categoria = new Categoria();
-		categoria.setId(3L);
+		Categoria categoria = new Categoria("BICICLETA");
 		
 		Produto produto = new Produto();
 		produto.setCategoria(categoria);

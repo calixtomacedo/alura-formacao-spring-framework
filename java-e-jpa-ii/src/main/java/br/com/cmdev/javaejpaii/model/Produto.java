@@ -9,12 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity()
 @Table(name = "TB_PRODUTOS")
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto {
 
 	@Id
@@ -27,7 +30,7 @@ public class Produto {
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDCATEGORIA")
+	//@JoinColumn(name = "IDCATEGORIA")
 	private Categoria categoria;
 
 	public Produto() {}

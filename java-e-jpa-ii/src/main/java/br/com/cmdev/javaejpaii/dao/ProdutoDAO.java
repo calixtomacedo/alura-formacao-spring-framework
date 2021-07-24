@@ -2,6 +2,7 @@ package br.com.cmdev.javaejpaii.dao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -53,7 +54,7 @@ public class ProdutoDAO {
 	}
 
 	public List<Produto> buscarPorCategoria(String nome) {
-		String jpql = "SELECT p FROM Produto p WHERE p.categoria.descricao = :pDescricao";
+		String jpql = "SELECT p FROM Produto p WHERE p.categoria.id.descricao = :pDescricao";
 		return this.entityManager.createQuery(jpql, Produto.class).setParameter("pDescricao", nome).getResultList();
 	}
 
@@ -92,7 +93,7 @@ public class ProdutoDAO {
 		return query.getResultList();
 	}
 
-	public List<Produto> buscarProdutoComCriteria(String nome, BigDecimal preco, LocalDate dataCadastro) {
+	public List<Produto> buscarProdutoComCriteria(String nome, BigDecimal preco, LocalDateTime dataCadastro) {
 
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Produto> query = builder.createQuery(Produto.class);

@@ -3,6 +3,7 @@ package br.com.cmdev.javaejpaii.model;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,15 +18,15 @@ public class Cliente {
 	@Column(name = "IDCLIENTE")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String cpf;
+	
+	@Embedded
+	private DadosPessoais dadosPessoais;
 	private LocalDateTime dataCadastro = LocalDateTime.now();
 	
 	public Cliente() {}
 
 	public Cliente(String nome, String cpf) {
-		this.nome = nome;
-		this.cpf = cpf;
+		this.dadosPessoais = new DadosPessoais(nome, cpf);
 	}
 
 	public Long getId() {
@@ -35,21 +36,21 @@ public class Cliente {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getNome() {
-		return nome;
+		return this.dadosPessoais.getNome();
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+	
 	public String getCpf() {
-		return cpf;
+		return this.dadosPessoais.getCpf();
+	}
+	
+	public DadosPessoais getDadosPessoais() {
+		return dadosPessoais;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setDadosPessoais(DadosPessoais dadosPessoais) {
+		this.dadosPessoais = dadosPessoais;
 	}
 
 	public LocalDateTime getDataCadastro() {
@@ -59,9 +60,5 @@ public class Cliente {
 	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", dataCadastro=" + dataCadastro + "]";
-	}
+	
 }
