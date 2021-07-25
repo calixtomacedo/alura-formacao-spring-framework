@@ -1,19 +1,22 @@
 package br.com.cmdev.springdatajpa;
 
+import java.util.Scanner;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.cmdev.springdatajpa.orm.Cargo;
-import br.com.cmdev.springdatajpa.repository.CargoRepository;
+import br.com.cmdev.springdatajpa.service.CrudCargoService;
 
 @SpringBootApplication
 public class SpringDataJpaApplication implements CommandLineRunner {
 
-	private CargoRepository repository;
+	private Boolean statusSystem = true;
 	
-	public SpringDataJpaApplication(CargoRepository repository) {
-		this.repository = repository;
+	private final CrudCargoService cargoService;
+	
+	public SpringDataJpaApplication(CrudCargoService cargoService) {
+		this.cargoService = cargoService;
 	}
 	
 	public static void main(String[] args) {
@@ -22,9 +25,18 @@ public class SpringDataJpaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Cargo cargo = new Cargo();
-		cargo.setDescricao("Analista Desenvolvedor");
-		repository.save(cargo);
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Qual a ação desejada?");
+		System.out.println("0 - Sair");
+		System.out.println("1 - Criar novo Cargo");
+		while (statusSystem) {
+			int action = scanner.nextInt();
+			if(action == 1) {
+				cargoService.inicial(scanner);
+			}else {
+				statusSystem = false;
+			}
+		}
 	}
 
 }
