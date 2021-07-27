@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.cmdev.springdatajpa.orm.Cargo;
@@ -40,6 +44,7 @@ public class CrudFuncionarioService {
 			System.out.println("2 - Atualizar");
 			System.out.println("3 - Visualizar");
 			System.out.println("4 - Deletar");
+			System.out.println("5 - Visualizar Paginação");
 
 			int action = scanner.nextInt();
 
@@ -55,6 +60,9 @@ public class CrudFuncionarioService {
 				break;
 			case 4:
 				deletar(scanner);
+				break;
+			case 5:
+				visualizarPaginacao(scanner);
 				break;
 			default:
 				system = false;
@@ -148,6 +156,22 @@ public class CrudFuncionarioService {
 	private void visualizar() {
 		Iterable<Funcionario> funcionarios = funcionarioRepository.findAll();
 		funcionarios.forEach(funcionario -> System.out.println(funcionario));
+	}
+	
+	private void visualizarPaginacao(Scanner scanner) {
+		System.out.println("Digite o número da pagina");
+		Integer page = scanner.nextInt();
+		
+		//Pageable pageable = PageRequest.of(page, 3, Sort.unsorted());
+		Pageable pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.ASC, "nome"));
+		
+		Page<Funcionario> pagaFunc = funcionarioRepository.findAll(pageable);
+
+		System.out.println(pagaFunc);
+		System.out.println("Pagina atual: "+ pagaFunc.getNumber());
+		System.out.println("Total de elementos: "+ pagaFunc.getTotalElements());
+		
+		pagaFunc.forEach(funcionario -> System.out.println(funcionario));
 	}
 
 	private void deletar(Scanner scanner) {
