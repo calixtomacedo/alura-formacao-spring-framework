@@ -34,7 +34,7 @@ public class CrudFuncionarioService {
 
 	public void inicial(Scanner scanner) {
 		while (system) {
-			System.out.println("Qual acao de cargo deseja executar");
+			System.out.println("Qual acao de Funcionario deseja executar");
 			System.out.println("0 - Sair");
 			System.out.println("1 - Salvar");
 			System.out.println("2 - Atualizar");
@@ -76,7 +76,7 @@ public class CrudFuncionarioService {
 		System.out.println("Digite a data de contracao");
 		String dataContratacao = scanner.next();
 
-		System.out.println("Digite o cargoId");
+		System.out.println("Digite o id do cargo");
 		Integer cargoId = scanner.nextInt();
 
 		List<UnidadeTrabalho> unidades = unidade(scanner);
@@ -88,7 +88,7 @@ public class CrudFuncionarioService {
 		funcionario.setDataContratacao(LocalDate.parse(dataContratacao, formatter));
 		Optional<Cargo> cargo = cargoRepository.findById(cargoId);
 		funcionario.setCargo(cargo.get());
-		funcionario.setUnidadeTrabalhos(unidades);
+		funcionario.setUnidadesTrabalho(unidades);
 
 		funcionarioRepository.save(funcionario);
 		System.out.println("Salvo");
@@ -99,7 +99,7 @@ public class CrudFuncionarioService {
 		List<UnidadeTrabalho> unidades = new ArrayList<>();
 
 		while (isTrue) {
-			System.out.println("Digite o unidadeId (Para sair digite 0)");
+			System.out.println("Digite o id da unidade (Para sair digite 0)");
 			Integer unidadeId = scanner.nextInt();
 
 			if (unidadeId != 0) {

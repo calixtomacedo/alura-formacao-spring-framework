@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_UNIDADETRABALHO")
+@Table(name = "TB_UNIDADESTRABALHO")
 public class UnidadeTrabalho {
 
 	@Id
@@ -20,7 +20,7 @@ public class UnidadeTrabalho {
 	private String descricao;
 	private String endereco;
 	
-	@ManyToMany(mappedBy = "unidadeTrabalhos", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "unidadesTrabalho", fetch = FetchType.EAGER)
 	private List<Funcionario> funcionarios;
 
 	public Integer getId() {

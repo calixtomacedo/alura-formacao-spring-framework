@@ -30,13 +30,13 @@ public class Funcionario {
 	private LocalDate dataContratacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "cargo_id", nullable = false)
+	@JoinColumn(name = "idCargo", nullable = false)
 	private Cargo cargo;
 	
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "funcionarios_unidades", joinColumns = { @JoinColumn(name = "fk_funcionario") }, inverseJoinColumns = { @JoinColumn(name = "fk_unidade") })
-	private List<UnidadeTrabalho> unidadeTrabalhos;
+	@JoinTable(name = "TB_FUNCIONARIOUNIDADES", joinColumns = { @JoinColumn(name = "idFuncionario") }, inverseJoinColumns = { @JoinColumn(name = "idUnidadeTrabalho") })
+	private List<UnidadeTrabalho> unidadesTrabalho;
 
 	public Integer getId() {
 		return id;
@@ -86,16 +86,17 @@ public class Funcionario {
 		this.cargo = cargo;
 	}
 
-	public List<UnidadeTrabalho> getUnidadeTrabalhos() {
-		return unidadeTrabalhos;
+	public List<UnidadeTrabalho> getUnidadesTrabalho() {
+		return unidadesTrabalho;
 	}
 
-	public void setUnidadeTrabalhos(List<UnidadeTrabalho> unidadeTrabalhos) {
-		this.unidadeTrabalhos = unidadeTrabalhos;
+	public void setUnidadesTrabalho(List<UnidadeTrabalho> unidadesTrabalho) {
+		this.unidadesTrabalho = unidadesTrabalho;
 	}
 
 	@Override
 	public String toString() {
-		return "Funcionario: " + "id:" + id + "| nome:'" + nome + "| cpf:" + cpf + "| salario:" + salario + "| dataContratacao:" + dataContratacao + "| cargo:" + cargo.getDescricao();
+		return "Funcionario [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", salario=" + salario + ", dataContratacao=" + dataContratacao + ", cargo=" + cargo + ", unidadesTrabalho=" + unidadesTrabalho + "]";
 	}
+	
 }
