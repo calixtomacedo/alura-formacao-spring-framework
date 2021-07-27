@@ -8,6 +8,7 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 import br.com.cmdev.springdatajpa.orm.Funcionario;
+import br.com.cmdev.springdatajpa.orm.FuncionarioProjecao;
 import br.com.cmdev.springdatajpa.repository.FuncionarioRepository;
 
 @Service
@@ -29,6 +30,7 @@ public class RelatoriosService {
 			System.out.println("1 - Buscar Funcionarios por nome");
 			System.out.println("2 - Buscar Funcionarios por nome, data e salario");
 			System.out.println("3 - Buscar Funcionarios por data contratação");
+			System.out.println("4 - Buscar Funcionarios Salario");
 
 			int action = scanner.nextInt();
 
@@ -41,6 +43,9 @@ public class RelatoriosService {
 				break;
 			case 3:
 				buscarPorDataContratacao(scanner);
+				break;
+			case 4:
+				buscarFuncionarioSalario();
 				break;
 			default:
 				StatusSystem = false;
@@ -82,5 +87,14 @@ public class RelatoriosService {
 		List<Funcionario> funcionarioList = funcionarioRepository.buscarPorDataContracao(localDate);
 		
 		funcionarioList.forEach(System.out::println);
+	}
+	
+	private void buscarFuncionarioSalario() {
+		
+		List<FuncionarioProjecao> funcionarioSalario = funcionarioRepository.findFuncionarioSalario();
+		
+		funcionarioSalario.forEach(funcSal -> {
+			System.out.println("ID: "+funcSal.getId()+", Nome: "+funcSal.getNome()+", Salario: "+funcSal.getSalario());
+		});
 	}
 }
