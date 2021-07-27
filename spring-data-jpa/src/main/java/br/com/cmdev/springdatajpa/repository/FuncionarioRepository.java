@@ -3,6 +3,7 @@ package br.com.cmdev.springdatajpa.repository;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,7 @@ import br.com.cmdev.springdatajpa.orm.FuncionarioProjecao;
 
 //public interface FuncionarioRepository extends CrudRepository<Funcionario, Integer> {
 @Repository
-public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Integer> {
+public interface FuncionarioRepository extends PagingAndSortingRepository<Funcionario, Integer>, JpaSpecificationExecutor<Funcionario> {
 
 	public List<Funcionario> findByNome(String nome);
 	

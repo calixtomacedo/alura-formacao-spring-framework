@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.cmdev.springdatajpa.service.CrudCargoService;
 import br.com.cmdev.springdatajpa.service.CrudFuncionarioService;
 import br.com.cmdev.springdatajpa.service.CrudUnidadeTrabalhoService;
+import br.com.cmdev.springdatajpa.service.RelatorioFuncioarioDynamic;
 import br.com.cmdev.springdatajpa.service.RelatoriosService;
 
 @SpringBootApplication
@@ -23,12 +24,15 @@ public class SpringDataJpaApplication implements CommandLineRunner {
 	private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
 	
 	private final RelatoriosService relatoriosService;
+	
+	private final RelatorioFuncioarioDynamic relatorioFuncioarioDynamic;
 
-	public SpringDataJpaApplication(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
+	public SpringDataJpaApplication(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService, RelatorioFuncioarioDynamic relatorioFuncioarioDynamic) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
 		this.relatoriosService = relatoriosService;
+		this.relatorioFuncioarioDynamic = relatorioFuncioarioDynamic;
 	}
 
 	public static void main(String[] args) {
@@ -46,6 +50,7 @@ public class SpringDataJpaApplication implements CommandLineRunner {
 			System.out.println("2 - Cargo");
 			System.out.println("3 - Unidade");
 			System.out.println("4 - Relatórios");
+			System.out.println("5 - Relatório Dinâmico");
 
 			Integer function = scanner.nextInt();
 
@@ -61,6 +66,9 @@ public class SpringDataJpaApplication implements CommandLineRunner {
 				break;
 			case 4:
 				relatoriosService.inicial(scanner);
+				break;
+			case 5:
+				relatorioFuncioarioDynamic.inicial(scanner);
 				break;
 			default:
 				System.out.println("Finalizando");
