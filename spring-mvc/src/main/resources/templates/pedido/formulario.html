@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<meta charset="UTF-8" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	</head>
+	
+	<body>
+		
+		<div class="container">
+			<div class="p-3 mb-0 mt-1 rounded-top" style="background-color: #f1f3f5">
+				<h1 class="display-4">Novo Pedido</h1>
+			</div>
+			
+			<form action="/pedido/novo" method="post">
+				<div>
+					<label for="nome-produto">Produto</label>
+					<input name="nomeProduto" placeholder="nome do produto" id="nome-produto" />
+					<small>Informe qual o nome do produto.</small>
+				</div>
+				
+				<div>
+					<label for="url-produto">Url</label>
+					<input name="urlProduto" placeholder="url do produto" id="url-produto" />
+					<small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
+				</div>
+				
+				<div>
+					<label for="url-imagem">Imagem</label>
+					<input name="urlImagem" placeholder="url da imagem" id="url-imagem" />
+					<small>Copie a url de uma boa imagem e cole aqui para ajudar a conseguir compradores.</small>
+				</div>
+				
+				<div>
+					<label for="text-descricao">Descrição</label>
+					<textarea name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador" id="text-descricao"></textarea>
+				</div>
+				<button type="submit">Cadastrar</button>			
+			</form>
+		
+		</div>
+	</body>
+</html>
