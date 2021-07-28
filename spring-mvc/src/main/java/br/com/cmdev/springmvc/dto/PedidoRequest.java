@@ -1,11 +1,20 @@
 package br.com.cmdev.springmvc.dto;
 
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.cmdev.springmvc.model.Pedido;
 
 public class PedidoRequest {
 
+	@Length(min = 5, max = 255)
 	private String nomeProduto;
+	
+	@NotBlank
 	private String urlProduto;
+	
+	@NotBlank
 	private String urlImagem;
 	private String descricao;
 
