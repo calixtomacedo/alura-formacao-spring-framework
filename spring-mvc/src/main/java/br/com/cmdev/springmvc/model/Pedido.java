@@ -5,10 +5,14 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import br.com.cmdev.springmvc.model.enums.StatusPedido;
 
 @Entity
 @Table(name = "TB_PEDIDOS")
@@ -24,6 +28,9 @@ public class Pedido {
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
 
 	public Long getId() {
 		return id;
@@ -79,5 +86,13 @@ public class Pedido {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
 	}
 }

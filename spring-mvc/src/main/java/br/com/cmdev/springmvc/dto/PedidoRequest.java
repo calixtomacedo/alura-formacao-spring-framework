@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.cmdev.springmvc.model.Pedido;
+import br.com.cmdev.springmvc.model.enums.StatusPedido;
 
 public class PedidoRequest {
 
@@ -56,6 +57,7 @@ public class PedidoRequest {
 		pedido.setUrlProduto(this.urlProduto);
 		pedido.setUrlImagem(this.urlImagem);
 		pedido.setDescricao(this.descricao);
+		pedido.setStatus(StatusPedido.AGUARDANDO);
 		return pedido;
 	}
 
