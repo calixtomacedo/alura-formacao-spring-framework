@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head th:replace="~{base :: head}"></head>
+	
+	<body>
+		
+		<div th:replace="~{base :: logo}"></div>
+		
+		<div class="container">
+			
+			<div th:replace="~{base :: titulo('Novo Pedido')}"></div>
+			
+			<div class="card mt-3">
+				<form th:object="${pedidoRequest}" class="card-body" action="/pedido/novo" method="post">
+					<div class="mb-3">
+						<label class="form-label" for="nome-produto">Produto</label>
+						<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="nome do produto" id="nome-produto" />
+						<small>Informe qual o nome do produto.</small>
+						<div th:errors="*{nomeProduto}" class="invalid-feedback"></div>
+					</div>
+					
+					<div class="mb-3">
+						<label class="form-label" for="url-produto">Url</label>
+						<input th:field="*{urlProduto}" th:errorclass="is-invalid" class="form-control" placeholder="url do produto" id="url-produto" />
+						<small>Procure em um site o produto que você deseja e cole a url da página aqui.</small>
+						<div th:errors="*{urlProduto}" class="invalid-feedback"></div>
+					</div>
+					
+					<div class="mb-3">
+						<label class="form-label" for="url-imagem">Imagem</label>
+						<input th:field="*{urlImagem}" th:errorclass="is-invalid" class="form-control" placeholder="url da imagem" id="url-imagem" />
+						<small>Copie a url de uma boa imagem e cole aqui para ajudar a conseguir compradores.</small>
+						<div th:errors="*{urlImagem}" class="invalid-feedback"></div>
+					</div>
+					
+					<div class="mb-3">
+						<label class="form-label" for="text-descricao">Descrição</label>
+						<textarea th:field="*{descricao}" class="form-control" placeholder="Adicione detalhes importantes para ajudar o comprador" id="text-descricao"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Cadastrar</button>			
+				</form>
+			</div>
+		
+		</div>
+	</body>
+</html>
