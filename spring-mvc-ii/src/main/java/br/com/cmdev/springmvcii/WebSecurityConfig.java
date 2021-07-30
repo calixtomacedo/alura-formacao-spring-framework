@@ -20,28 +20,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+			.antMatchers("/home/**").permitAll()
 			.anyRequest().authenticated()
-		.and()
-		.formLogin(form -> form
+			.and().formLogin(form -> form
 			.loginPage("/login")
-			.defaultSuccessUrl("/home", true)
+			.defaultSuccessUrl("/user/pedido", true)
 			.permitAll()
 		)
-		.logout(logout -> logout.logoutUrl("/logout"))
-		.csrf().disable();
+		.logout(logout -> {
+			logout.logoutUrl("/logout")
+			.logoutSuccessUrl("/home");
+		});
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		//UserDetails user = User.builder().username("rosy.cunegundes").password(passwordEncoder.encode("654321")).roles("ADM").build();
-	
-		auth.jdbcAuthentication()
-			.dataSource(dataSource)
-			.passwordEncoder(passwordEncoder);
-			//.withUser(user);
-
+		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder);
 	}
 
 }

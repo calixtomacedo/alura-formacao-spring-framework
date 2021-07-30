@@ -21,16 +21,29 @@
 </head>
 
 
-<div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
-	<span class="logo">Mudi</span>
-	<span class="mt-3">
-		<a href="/login" class="link-light text-decoration-none" sec:authorize="!isAuthenticated()">Login</a>
-		<span class="fw-bold" sec:authorize="isAuthenticated()" th:text="'Bem vindo '+ ${user != null ? user.name : ''}" ></span> 
-		<a href="#" onclick="document.querySelector('#form-logout').submit()" class="link-light text-decoration-none" sec:authorize="isAuthenticated()">Logout</a>
-		<form th:action="@{/logout}" method="post" id="form-logout"></form>
-	</span>
+<div th:fragment="logo" class="">
+	
+	<div class="logo-container p-3 d-flex justify-content-between">
+		<span class="logo">Mudi</span>
+		<span class="mt-3">
+			<a href="/login" class="link-light text-decoration-none" sec:authorize="!isAuthenticated()">Login</a>
+			<span class="fw-bold" sec:authorize="isAuthenticated()" th:if="${session.user != null}" th:text="${'Bem vindo '+ session.user.name}"></span> 
+			<a href="#" onclick="document.querySelector('#form-logout').submit()" class="link-light text-decoration-none" sec:authorize="isAuthenticated()">Logout</a>
+			<form th:action="@{/logout}" method="post" id="form-logout"></form>
+		</span>
+	</div>
+	
+	<div class="row" sec:authorize="isAuthenticated()">
+		<div class="col">
+			<nav class="nav">
+			  <a class="nav-link pt-0" th:href="@{/home}">Home</a>
+			  <a class="nav-link pt-0" th:href="@{/user/pedido}">Meus pedidos</a>
+			</nav>
+		</div>
+	</div>
+	
 </div>
 
-<div th:fragment="titulo(valor)" class="p-3 mb-0 rounded bg-pedidos">
+<div th:fragment="titulo(valor)" class="p-3 mt-3 mb-0 rounded bg-pedidos">
 	<h1 class="display-4" th:text="${valor}"></h1>
 </div>
