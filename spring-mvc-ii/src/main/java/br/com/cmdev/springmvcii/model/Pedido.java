@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.cmdev.springmvcii.model.enums.StatusPedido;
 
 @Entity
@@ -32,6 +34,7 @@ public class Pedido {
 	private String urlImagem;
 	private String descricao;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "username")
 	private User user;
