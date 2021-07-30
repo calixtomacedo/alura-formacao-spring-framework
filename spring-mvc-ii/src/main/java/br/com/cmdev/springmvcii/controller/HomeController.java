@@ -1,5 +1,6 @@
 package br.com.cmdev.springmvcii.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.cmdev.springmvcii.model.Pedido;
+import br.com.cmdev.springmvcii.model.User;
 import br.com.cmdev.springmvcii.model.enums.StatusPedido;
 import br.com.cmdev.springmvcii.repository.PedidoRepository;
+import br.com.cmdev.springmvcii.repository.UserRepository;
 
 @Controller
 @RequestMapping("/home")
@@ -21,10 +24,16 @@ public class HomeController {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	@GetMapping
-	public String home(Model model) {
-		List<Pedido> pedidos = pedidoRepository.findAll();
+	public String home(Model model, Principal principal) {
+		List<Pedido> pedidos = pedidoRepository.findAllByUser(principal.getName());
 		model.addAttribute("pedidos", pedidos);
+		
+		User user = userRepository.findByUsername(principal.getName());
+		model.addAttribute("user", user);
 
 		return "home";
 	}

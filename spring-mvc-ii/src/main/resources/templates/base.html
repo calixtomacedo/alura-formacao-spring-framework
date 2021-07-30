@@ -25,6 +25,7 @@
 	<span class="logo">Mudi</span>
 	<span class="mt-3">
 		<a href="/login" class="link-light text-decoration-none" sec:authorize="!isAuthenticated()">Login</a>
+		<span class="fw-bold" sec:authorize="isAuthenticated()" th:text="'Bem vindo '+ ${user != null ? user.name : ''}" ></span> 
 		<a href="#" onclick="document.querySelector('#form-logout').submit()" class="link-light text-decoration-none" sec:authorize="isAuthenticated()">Logout</a>
 		<form th:action="@{/logout}" method="post" id="form-logout"></form>
 	</span>

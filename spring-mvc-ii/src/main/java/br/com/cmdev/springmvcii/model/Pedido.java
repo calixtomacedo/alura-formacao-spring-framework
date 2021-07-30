@@ -7,9 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.cmdev.springmvcii.model.enums.StatusPedido;
@@ -28,7 +31,11 @@ public class Pedido {
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "username")
+	private User user;
+
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
 
@@ -95,4 +102,13 @@ public class Pedido {
 	public void setStatus(StatusPedido status) {
 		this.status = status;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }
