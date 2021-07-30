@@ -2,7 +2,9 @@ package br.com.cmdev.springmvcii.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,6 +44,9 @@ public class Pedido {
 
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+	private List<Oferta> ofertaList;
 
 	public Long getId() {
 		return id;
@@ -98,14 +104,6 @@ public class Pedido {
 		this.descricao = descricao;
 	}
 
-	public StatusPedido getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusPedido status) {
-		this.status = status;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -113,5 +111,20 @@ public class Pedido {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public StatusPedido getStatus() {
+		return status;
+	}
+	
+	public void setStatus(StatusPedido status) {
+		this.status = status;
+	}
 
+	public List<Oferta> getOfertaList() {
+		return ofertaList;
+	}
+
+	public void setOfertaList(List<Oferta> ofertaList) {
+		this.ofertaList = ofertaList;
+	}
+	
 }

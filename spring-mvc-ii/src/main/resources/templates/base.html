@@ -18,6 +18,11 @@
 			font-size: 2.5rem;
 		}
 	</style>
+	
+	<script src="js/cmdev.js" type="text/javascript"></script>
+	<script src="js/vue.js" type="text/javascript"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	
 </head>
 
 
@@ -32,14 +37,14 @@
 			<form th:action="@{/logout}" method="post" id="form-logout"></form>
 		</span>
 	</div>
-	
-	<div class="row" sec:authorize="isAuthenticated()">
-		<div class="col">
-			<nav class="nav">
-			  <a class="nav-link pt-0" th:href="@{/home}">Home</a>
-			  <a class="nav-link pt-0" th:href="@{/user/pedido}">Meus pedidos</a>
-			</nav>
-		</div>
+<!-- 
+ -->	
+	<div sec:authorize="isAuthenticated()">
+		<nav class="nav">
+		  <a class="nav-link pt-0" th:href="@{/home}">Home</a>
+		  <a class="nav-link pt-0" th:href="@{/user/pedido}">Meus pedidos</a>
+		  <a class="nav-link pt-0" th:href="@{/oferta}">Faça a sua oferta</a>
+		</nav>
 	</div>
 	
 </div>
