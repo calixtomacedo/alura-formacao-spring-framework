@@ -4,15 +4,24 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 import br.com.cmdev.springmvcii.model.Oferta;
 
 public class OfertaRequest {
 	
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			
+	
 	private Long idPedido;
+	
+	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
+	@NotNull
 	private String valorNegociado;
-	private String dataDataEntrega;
+	
+	@Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
+	@NotNull
+	private String dataEntrega;
 	private String comentario;
 
 	public Long getIdPedido() {
@@ -31,12 +40,12 @@ public class OfertaRequest {
 		this.valorNegociado = valorNegociado;
 	}
 
-	public String getDataDataEntrega() {
-		return dataDataEntrega;
+	public String getDataEntrega() {
+		return dataEntrega;
 	}
 
-	public void setDataDataEntrega(String dataDataEntrega) {
-		this.dataDataEntrega = dataDataEntrega;
+	public void setDataEntrega(String dataEntrega) {
+		this.dataEntrega = dataEntrega;
 	}
 
 	public String getComentario() {
@@ -50,7 +59,7 @@ public class OfertaRequest {
 	public Oferta toOferta() {
 		Oferta oferta = new Oferta();
 		oferta.setComentario(this.comentario);
-		oferta.setDataDataEntrega(LocalDate.parse(this.dataDataEntrega, FORMATTER) );
+		oferta.setDataDataEntrega(LocalDate.parse(this.dataEntrega, FORMATTER) );
 		oferta.setValorNegociado(new BigDecimal(this.valorNegociado));
 		return oferta;
 	}

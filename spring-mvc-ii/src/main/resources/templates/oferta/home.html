@@ -1,7 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	
 	<head th:replace="~{base :: head}"></head>
-	
+	<!-- 
+	<body>
+	 -->
 	<body onload="loadVue()">
 		<div th:replace="~{base :: logo}"></div>
 		<div class="container" id="ofertas">
@@ -11,16 +13,34 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-12 col-sm-8 mb-3">
-							<div class="row">
-								<div class="col-md-5">Valor: <input /></div>
-								<div class="col-md-7">Data da entrega: <input /></div>
-							</div>
 							<div>Produto</div>
 							<div><a class="link-info text-decoration-none" v-bind:href="pedido.urlProduto">{{pedido.nomeProduto}}</a></div>
 							<div>Descrição</div>
 							<div>
-								<textarea class="form-control">{{pedido.descricao}}</textarea>
+								<textarea readonly="readonly" class="form-control">{{pedido.descricao}}</textarea>
 							</div>
+							<div class="row mt-3">
+								<div class="col-md-5">
+									<label class="form-label" for="text-valor-negociado">Valor:</label> 
+									<input v-bind:class="{'is-invalid':pedido.erros.valorNegociado !==''}" class="form-control" v-model="pedido.valorNegociado" id="text-valor-negociado" />
+									<div v-if="pedido.erros.valorNegociado" class="invalid-feedback" >
+										{{pedido.erros.valorNegociado}}
+									</div>
+								</div>
+								<div class="col-md-7">
+									<label class="form-label" for="text-data-entrega">Data da entrega:</label> 
+									<input v-bind:class="{'is-invalid':pedido.erros.dataEntrega !==''}" class="form-control" v-model="pedido.dataDaEntrega" id="text-data-entrega" />
+									<div v-if="pedido.erros.dataEntrega" class="invalid-feedback">
+										{{pedido.erros.dataEntrega}}
+									</div>
+								</div>
+							</div>
+							<div class="mt-3">
+								<label class="form-label" for="text-comentario">Comentário</label>
+								<textarea class="form-control" id="text-comentario" v-model="pedido.comentario"></textarea>
+							</div>
+							<button v-if="pedido.ofertaEnviada" class="btn btn-success mt-3">Oferta Enviada</button>	
+							<button v-else v-on:click="enviarOferta(pedido)" class="btn btn-primary mt-3">Enviar Oferta</button>	
 						</div>
 						<div class="col-12 col-sm-4">
 							<div>
@@ -31,6 +51,7 @@
 				</div>
 			</div>		
 		</div>
+		
 	</body>
 
 </html>

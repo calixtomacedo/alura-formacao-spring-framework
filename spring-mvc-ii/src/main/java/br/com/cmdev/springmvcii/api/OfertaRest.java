@@ -2,8 +2,11 @@ package br.com.cmdev.springmvcii.api;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +23,7 @@ public class OfertaRest {
 	private PedidoRepository pedidoRepository;
 
 	@PostMapping
-	public Oferta criarOferta(OfertaRequest request) {
+	public Oferta criarOferta(@Valid @RequestBody OfertaRequest request) {
 		
 		Optional<Pedido> pedido = pedidoRepository.findById(request.getIdPedido());
 		if(!pedido.isPresent()) {
