@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/**
+.bg-pedidos {
+	background-color: #f1f3f5;
+}
+
+.logo-container {
+	background-color: #47bcff;
+	color: #fff;
+}
+
+.logo {
+	font-family: 'Handlee', cursive;
+	font-size: 2.5rem;
+}
+*/
+
+
+body {
+    background-color: lightblue;
+}

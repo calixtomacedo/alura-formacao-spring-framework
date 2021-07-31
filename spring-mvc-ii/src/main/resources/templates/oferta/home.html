@@ -1,9 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	
 	<head th:replace="~{base :: head}"></head>
-	<!-- 
-	<body>
-	 -->
 	<body onload="loadVue()">
 		<div th:replace="~{base :: logo}"></div>
 		<div class="container" id="ofertas">
@@ -51,6 +48,56 @@
 				</div>
 			</div>		
 		</div>
+		
+		<script type="text/javascript">
+	
+			function loadVue() {
+				var app = new Vue({
+					el: '#ofertas',
+					data: {
+						pedidoList: []
+					},
+					mounted() {
+						axios
+							.get('http://localhost:8080/api/pedidos/aguardando')
+							.then(response => {
+								response.data.forEach(pedido => {
+									pedido.ofertaEnviada = false;
+									pedido.erros = {
+				    	  				valorNegociado: '',
+				    	  				dataEntrega: ''
+				    	  			}
+								})
+								this.pedidoList = response.data
+							})
+					},
+					methods: {
+						enviarOferta: function(pedido) {
+							pedido.erros = {
+				  				valorNegociado: '',
+				  				dataEntrega: ''
+							};		
+							axios.post('http://localhost:8080/api/ofertas', {
+								idPedido: pedido.id,
+								valorNegociado: pedido.valorNegociado,
+								dataEntrega: pedido.dataDaEntrega,
+								comentario: pedido.comentario
+							})
+							.then(response => pedido.ofertaEnviada = true)
+							.catch(error => {
+					    	  error.response.data.errors.forEach(error => {
+					    		  pedido.erros[error.field] = error.defaultMessage;
+					    	  })
+					      })
+						}
+					}
+				});
+			}
+	
+		</script>
+		
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		
 	</body>
 
