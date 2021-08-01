@@ -3,22 +3,16 @@ package br.com.cmdev.springmvcii;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import br.com.cmdev.springmvcii.interceptor.InterceptorAccess;
 
 @Configuration
-public class WebConfiguration extends WebMvcConfigurationSupport {
+public class WebConfiguration implements WebMvcConfigurer {
 	
 	@Override
-	protected void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(getInterceptorAccess()).addPathPatterns("/**");
-	}
-	
-	@Override
-	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(getInterceptorAccess()).addPathPatterns("/**").excludePathPatterns("/**/*.js", "/**/*.css");
 	}
 	
 	@Bean

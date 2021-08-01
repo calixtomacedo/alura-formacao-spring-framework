@@ -2,8 +2,6 @@
  * 
  */
 
-alert('Ativado');
-
 function loadVue() {
 	var app = new Vue({
 		el: '#ofertas',
