@@ -6,20 +6,16 @@ import org.hibernate.validator.constraints.Length;
 
 import com.sun.istack.NotNull;
 
-import br.com.cmdev.sbootapirest.model.Curso;
 import br.com.cmdev.sbootapirest.model.Topico;
-import br.com.cmdev.sbootapirest.repository.CursoRepository;
+import br.com.cmdev.sbootapirest.repository.TopicoRepository;
 
-public class TopicoRequest {
+public class AtualizacaoTopicoRequest {
 
 	@NotNull @NotEmpty @Length(min = 5, max = 255)
 	private String titulo;
-	
+
 	@NotNull @NotEmpty @Length(min = 10, max = 255)
 	private String mensagem;
-	
-	@NotNull @NotEmpty
-	private String nomeCurso;
 
 	
 	public String getTitulo() {
@@ -35,17 +31,12 @@ public class TopicoRequest {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
-
-	public String getNomeCurso() {
-		return nomeCurso;
-	}
-	public void setNomeCurso(String nomeCurso) {
-		this.nomeCurso = nomeCurso;
-	}
-
-	public Topico convertToTopico(CursoRepository cursoRepository) {
-		Curso curso = cursoRepository.findByNomeIgnoreCase(nomeCurso);
-		return new Topico(titulo, mensagem, curso);
+	
+	public Topico atualizar(Long id, TopicoRepository topicoRepository) {
+		Topico topico = topicoRepository.findById(id).get();
+		topico.setTitulo(this.titulo);
+		topico.setMensagem(this.mensagem);
+		return topico;
 	}
 
 }
