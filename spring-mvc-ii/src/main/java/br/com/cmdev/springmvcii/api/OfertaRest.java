@@ -24,20 +24,20 @@ public class OfertaRest {
 
 	@PostMapping
 	public Oferta criarOferta(@Valid @RequestBody OfertaRequest request) {
-		
+
 		Optional<Pedido> pedido = pedidoRepository.findById(request.getIdPedido());
-		if(!pedido.isPresent()) {
+		if (!pedido.isPresent()) {
 			return null;
 		}
-		
+
 		Pedido novoPedido = pedido.get();
-		
+
 		Oferta novaOferta = request.toOferta();
 		novaOferta.setPedido(novoPedido);
 		novoPedido.getOfertaList().add(novaOferta);
-		
+
 		pedidoRepository.save(novoPedido);
-		
+
 		return novaOferta;
 	}
 }

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "TB_ACESSOS")
 public class Access {
-	
+
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss:SSS");
 
 	@Id
@@ -27,45 +27,57 @@ public class Access {
 	private Duration duration;
 	private String login;
 	private String nome;
-	
+
 	public Long getIdAcesso() {
 		return idAcesso;
 	}
+
 	public void setIdAcesso(Long idAcesso) {
 		this.idAcesso = idAcesso;
 	}
+
 	public String getPath() {
 		return path;
 	}
+
 	public void setPath(String path) {
 		this.path = path;
 	}
+
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
+
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
+
 	public Duration getDuration() {
 		return duration;
 	}
+
 	public void setDuration(Duration duration) {
 		this.duration = duration;
 	}
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getDate() {
 		return FORMATTER.format(dateTime);
 	}
-	
+
 }

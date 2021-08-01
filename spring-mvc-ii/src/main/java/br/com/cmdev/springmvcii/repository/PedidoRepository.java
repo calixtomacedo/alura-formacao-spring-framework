@@ -12,9 +12,9 @@ import br.com.cmdev.springmvcii.model.enums.StatusPedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
-	//@Cacheable("pedidos")
+	// @Cacheable("pedidos")
 	List<Pedido> findByStatus(StatusPedido status, Pageable pageable);
-	
+
 	@Query("SELECT p FROM Pedido p JOIN p.user u WHERE u.username = :pUsername")
 	List<Pedido> findAllByUser(@Param("pUsername") String username);
 

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import br.com.cmdev.springmvcii.model.User;
 
 @Repository
-public interface UserRepository  extends JpaRepository<User, String>  {
+public interface UserRepository extends JpaRepository<User, String> {
 
-	//@Cacheable("user")
+	// @Cacheable("user")
 	public User findByUsername(String username);
 }

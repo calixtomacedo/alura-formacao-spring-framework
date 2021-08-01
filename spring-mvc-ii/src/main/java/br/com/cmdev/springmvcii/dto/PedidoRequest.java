@@ -11,10 +11,10 @@ public class PedidoRequest {
 
 	@Length(min = 5, max = 255)
 	private String nomeProduto;
-	
+
 	@NotBlank
 	private String urlProduto;
-	
+
 	@NotBlank
 	private String urlImagem;
 	private String descricao;

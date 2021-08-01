@@ -26,17 +26,17 @@ public class HomeController {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@GetMapping
 	public String home(Model model, HttpServletRequest request, Principal principal) {
 		Sort sort = Sort.by("dataDaEntrega").descending();
 		PageRequest pageRequest = PageRequest.of(0, 5, sort);
 		List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.ENTREGUE, pageRequest);
 		model.addAttribute("pedidos", pedidos);
-		
+
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		User user = userRepository.findByUsername(name);
 		request.getSession().setAttribute("user", user);

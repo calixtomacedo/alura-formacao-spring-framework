@@ -44,7 +44,7 @@ public class Pedido {
 
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
-	
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
 	private List<Oferta> ofertaList;
@@ -112,10 +112,11 @@ public class Pedido {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public StatusPedido getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(StatusPedido status) {
 		this.status = status;
 	}
@@ -127,5 +128,5 @@ public class Pedido {
 	public void setOfertaList(List<Oferta> ofertaList) {
 		this.ofertaList = ofertaList;
 	}
-	
+
 }

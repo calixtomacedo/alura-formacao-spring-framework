@@ -14,7 +14,7 @@ import br.com.cmdev.springmvcii.model.User;
 import br.com.cmdev.springmvcii.repository.AccessRepository;
 
 public class InterceptorAccess implements AsyncHandlerInterceptor {
-	
+
 	@Autowired
 	private AccessRepository accessRepository;
 
@@ -24,21 +24,21 @@ public class InterceptorAccess implements AsyncHandlerInterceptor {
 		access.setPath(request.getRequestURI());
 		access.setDateTime(LocalDateTime.now());
 		request.setAttribute("access", access);
-		
+
 		return true;
 	}
-	
+
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		
+
 		User user = (User) request.getSession().getAttribute("user");
-		
+
 		Access access = (Access) request.getAttribute("access");
 		access.setDuration(Duration.between(access.getDateTime(), LocalDateTime.now()));
 		access.setLogin(user != null ? user.getUsername() : "");
 		access.setNome(user != null ? user.getName() : "");
-		
+
 		accessRepository.save(access);
 	}
-	
+
 }

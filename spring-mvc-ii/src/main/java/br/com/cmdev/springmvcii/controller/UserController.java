@@ -26,22 +26,22 @@ public class UserController {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@GetMapping("pedido")
 	public String home(Model model, HttpServletRequest request, Principal principal) {
 		List<Pedido> pedidos = pedidoRepository.findAllByUser(principal.getName());
 		model.addAttribute("pedidos", pedidos);
-		
+
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		User user = userRepository.findByUsername(name);
 		request.getSession().setAttribute("user", user);
-		
+
 		return "user/home";
 	}
-	
+
 	@GetMapping("pedido/{status}")
 	public String listarPedidoPorStatus(@PathVariable("status") String status, Model model, Principal principal) {
 		List<Pedido> pedidos = pedidoRepository.findByStatusAndUser(StatusPedido.valueOf(status.toUpperCase()), principal.getName());
@@ -51,7 +51,7 @@ public class UserController {
 	}
 
 	@ExceptionHandler(IllegalArgumentException.class)
-	public String onError(){
+	public String onError() {
 		return "redirect:/user/home";
 	}
 }

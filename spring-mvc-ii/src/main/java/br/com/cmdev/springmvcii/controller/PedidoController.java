@@ -19,10 +19,10 @@ import br.com.cmdev.springmvcii.repository.UserRepository;
 @Controller
 @RequestMapping("pedido")
 public class PedidoController {
-	
+
 	@Autowired
 	private PedidoRepository pedidoRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -30,20 +30,20 @@ public class PedidoController {
 	public String formulario(PedidoRequest request) {
 		return "pedido/formulario";
 	}
-	
+
 	@PostMapping("novo")
 	public String novo(@Valid PedidoRequest request, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "pedido/formulario";
 		}
-		
+
 		String name = SecurityContextHolder.getContext().getAuthentication().getName();
 		User user = userRepository.findByUsername(name);
-		
+
 		Pedido pedido = request.toPedido();
 		pedido.setUser(user);
 		pedidoRepository.save(pedido);
-		
+
 		return "redirect:/home";
 	}
 }

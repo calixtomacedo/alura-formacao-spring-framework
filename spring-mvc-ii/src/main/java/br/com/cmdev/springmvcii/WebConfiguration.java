@@ -9,15 +9,15 @@ import br.com.cmdev.springmvcii.interceptor.InterceptorAccess;
 
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(getInterceptorAccess()).addPathPatterns("/**").excludePathPatterns("/**/*.js", "/**/*.css");
 	}
-	
+
 	@Bean
 	public InterceptorAccess getInterceptorAccess() {
-	    return  new InterceptorAccess();
+		return new InterceptorAccess();
 	}
-	
+
 }
