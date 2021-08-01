@@ -1,13 +1,24 @@
 package br.com.cmdev.sbootapirest.request;
 
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.sun.istack.NotNull;
+
 import br.com.cmdev.sbootapirest.model.Curso;
 import br.com.cmdev.sbootapirest.model.Topico;
 import br.com.cmdev.sbootapirest.repository.CursoRepository;
 
 public class TopicoRequest {
 
+	@NotNull @NotEmpty @Length(min = 5, max = 255)
 	private String titulo;
+	
+	@NotNull @NotEmpty @Length(min = 10, max = 255)
 	private String mensagem;
+	
+	@NotNull @NotEmpty
 	private String nomeCurso;
 
 	public String getTitulo() {

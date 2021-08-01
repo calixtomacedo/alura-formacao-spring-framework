@@ -3,6 +3,8 @@ package br.com.cmdev.sbootapirest.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +43,7 @@ public class TopicosController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<TopicoResponse> cadastrar(@RequestBody TopicoRequest topicoRequest, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<TopicoResponse> cadastrar(@RequestBody @Valid TopicoRequest topicoRequest, UriComponentsBuilder uriBuilder) {
 		Topico topico = topicoRequest.convertToTopico(cursoRepository);
 		topicoRepository.save(topico);
 		
