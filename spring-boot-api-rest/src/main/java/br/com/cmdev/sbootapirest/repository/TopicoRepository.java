@@ -8,6 +8,6 @@ import br.com.cmdev.sbootapirest.model.Topico;
 
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
-	List<Topico> findByCursoNomeIgnoreCase(String nomeCurso);
+	public List<Topico> findByCursoNomeIgnoreCase(String nomeCurso);
 
 }

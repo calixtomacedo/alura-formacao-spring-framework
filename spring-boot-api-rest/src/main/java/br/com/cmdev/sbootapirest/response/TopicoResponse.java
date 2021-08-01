@@ -33,7 +33,7 @@ public class TopicoResponse {
 		return dataCriacao;
 	}
 
-	public static List<TopicoResponse> toMap(List<Topico> topicoList) {
+	public static List<TopicoResponse> convertToTopico(List<Topico> topicoList) {
 		return topicoList.stream().map(TopicoResponse::new).collect(Collectors.toList());
 	}
 	
