@@ -1,8 +1,8 @@
 package br.com.cmdev.sbootapirestii.response;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
 
 import br.com.cmdev.sbootapirestii.model.Topico;
 
@@ -33,8 +33,9 @@ public class TopicoResponse {
 		return dataCriacao;
 	}
 
-	public static List<TopicoResponse> convertToTopico(List<Topico> topicoList) {
-		return topicoList.stream().map(TopicoResponse::new).collect(Collectors.toList());
+	public static Page<TopicoResponse> convertToTopico(Page<Topico> topicoList) {
+		//return topicoList.stream().map(TopicoResponse::new).collect(Collectors.toList());
+		return topicoList.map(TopicoResponse::new);
 	}
 	
 }
