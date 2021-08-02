@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -41,8 +43,9 @@ public class TopicosController {
 	@Autowired
 	private CursoRepository cursoRepository;
 
-	@GetMapping
 	//public Page<TopicoResponse> listar(@RequestParam(required = false) String nomeCurso, @RequestParam int pagina, @RequestParam int quant, @RequestParam String ordem) {
+	@GetMapping
+	@Cacheable(value = "listaDeTopicos")
 	public Page<TopicoResponse> listar(@RequestParam(required = false) String nomeCurso, @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable paginacao) {
 		//Pageable pagination = PageRequest.of(pagina, quant, Direction.ASC, ordem);
 		Page<Topico> topicoList = null;
@@ -57,6 +60,7 @@ public class TopicosController {
 	
 	@Transactional
 	@PostMapping
+	@CacheEvict(value = "listaDeTopicos", allEntries = true)
 	public ResponseEntity<TopicoResponse> cadastrar(@RequestBody @Valid TopicoRequest topicoRequest, UriComponentsBuilder uriBuilder) {
 		Topico topico = topicoRequest.convertToTopico(cursoRepository);
 		topicoRepository.save(topico);
@@ -76,6 +80,7 @@ public class TopicosController {
 	
 	@Transactional
 	@PutMapping("/{id}")
+	@CacheEvict(value = "listaDeTopicos", allEntries = true)
 	public ResponseEntity<TopicoResponse> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoTopicoRequest atualizacaoTopicoRequest){
 		Optional<Topico> optionalTopico = topicoRepository.findById(id);
 		if(optionalTopico.isPresent()) {
@@ -87,6 +92,7 @@ public class TopicosController {
 	
 	@Transactional
 	@DeleteMapping("/{id}")
+	@CacheEvict(value = "listaDeTopicos", allEntries = true)
 	public ResponseEntity<TopicoResponse> remover(@PathVariable Long id){
 		Optional<Topico> optionalTopico = topicoRepository.findById(id);
 		if(optionalTopico.isPresent()) {
