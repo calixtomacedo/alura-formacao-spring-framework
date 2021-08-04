@@ -18,5 +18,4 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and().csrf().disable();
 	}
 	
-	
 }

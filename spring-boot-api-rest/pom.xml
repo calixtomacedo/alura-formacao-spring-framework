@@ -5,7 +5,7 @@
 	<artifactId>spring-boot-api-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-api-rest</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Curso de Spring Boot API REST: Construa uma API</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
