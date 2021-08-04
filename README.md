@@ -2,8 +2,6 @@
 Alura: Formação Spring Framework
 
 - Os projetos estão orgamizado por cursos.
-- Exemplo: 
-	- curso 1
-	- curso 2
-	- curso ...
+
+- spring-boot-api-rest-iii: Curso de Spring Boot e Teste: Profiles, Testes e Deploy
 
