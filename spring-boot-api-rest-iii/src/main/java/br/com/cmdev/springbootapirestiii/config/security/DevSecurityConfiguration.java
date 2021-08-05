@@ -1,5 +1,5 @@
 package br.com.cmdev.springbootapirestiii.config.security;
-
+/*
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,3 +19,4 @@ public class DevSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 	
 }
+*/

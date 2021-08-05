@@ -103,7 +103,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>forum</finalName>
+		<finalName>forum-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

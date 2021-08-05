@@ -1,13 +1,12 @@
 package br.com.cmdev.springbootadmin;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootAdminApplicationTests {
-
+class ApplicationTests {
+/*
 	@Test
 	void contextLoads() {
 	}
-
+*/
 }
